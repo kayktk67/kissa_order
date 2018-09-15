@@ -56,56 +56,93 @@ class SubViewController: UIViewController{
     
     //各ボタン機能
     @IBAction func add(_ sender: Any) {
-        //オーダーの入力
-        let b1amount: Int = Int(B1AmountLabel.text!)!
-        let s1amount: Int = Int(S1AmountLabel.text!)!
-        let d1amount: Int = Int(D1AmountLabel.text!)!
-        let de1amount: Int = Int(De1AmountLabel.text!)!
-        DBRef1.child("table/order").child(tableNumber!).setValue(["b1amount":b1amount,"s1amount":s1amount,"d1amount":d1amount,"de1amount":de1amount, "time":ServerValue.timestamp()])
-        let key = DBRef1.child("table/orderorder").childByAutoId().key;
-        DBRef1.child("table/orderorder").child(key).setValue(tableNumber!)
-        DBRef1.child("table/orderkey").child(tableNumber!).setValue(key)
-        
-        //新規テーブルの区別
-        //let defaultPlace = DBRef.child("table/status").child(tableNumber!)
-        //defaultPlace.observe(.value) { (snap: DataSnapshot) in self.status2 = (snap.value! as AnyObject).description
+        let alertController1 = UIAlertController(title: "注文",message: "", preferredStyle: UIAlertControllerStyle.alert)
+        let okAction1 = UIAlertAction(title: "OK", style: UIAlertActionStyle.default){ (action: UIAlertAction) in
+            
+            //オーダーの入力
+            self.b1amount = self.B1AmountLabel.text
+            self.s1amount = self.S1AmountLabel.text
+            self.d1amount = self.D1AmountLabel.text
+            self.de1amount = self.De1AmountLabel.text
+            self.DBRef1.child("table/order").child(self.tableNumber!).setValue(["b1amount":self.b1amount!,"s1amount":self.s1amount!,"d1amount":self.d1amount!,"de1amount":self.de1amount!, "time":ServerValue.timestamp()])
+            
+            //オーダーキーの設定
+            let key = self.DBRef1.child("table/orderorder").childByAutoId().key;
+            self.DBRef1.child("table/orderorder").child(key).setValue(self.tableNumber!)
+            self.DBRef1.child("table/orderkey").child(self.tableNumber!).setValue(key)
+            
+            //新規テーブルの区別
+            //let defaultPlace = DBRef.child("table/status").child(tableNumber!)
+            //defaultPlace.observe(.value) { (snap: DataSnapshot) in self.status2 = (snap.value! as AnyObject).description
             //self.intstatus2 = Int(self.status2!)
             //if self.intstatus2! == 0{
-                self.DBRef1.child("table/status").child(self.tableNumber!).setValue(1)
-                //self.DBRef.child("data").childByAutoId().setValue(["b1amount":b1amount,"s1amount":s1amount,"d1amount":d1amount,"de1amount":de1amount])
-        //    }
-        //}
+            self.DBRef1.child("table/status").child(self.tableNumber!).setValue(1)
+            //     DBReff.DBRef1.child("data").childByAutoId().setValue(["b1t":self.b1amount,"s1t":self.s1amount,"d1t":self.d1amount,"de1t":self.de1amount])
+            //    }
+            //}
+            
+        }
+        let cancelButton1 = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel, handler: nil)
+        
+        alertController1.addAction(okAction1)
+        alertController1.addAction(cancelButton1)
+        present(alertController1,animated: true,completion: nil)
+        
+        
     }
     
     @IBAction func complete(_ sender: Any) {
-        DBRef1.child("table/status").child(self.tableNumber!).setValue(3)
-        var hogekey : String?
-        let defaultPlace = DBRef1.child("table/orderkey").child(tableNumber!)
-        defaultPlace.observeSingleEvent(of: .value, with: { (snapshot) in
-            hogekey = (snapshot.value! as AnyObject).description
-            self.DBRef1.child("table/orderorder").child(hogekey!).setValue(nil)
-            self.DBRef1.child("table/orderkey").child(self.tableNumber!).setValue(nil)
-        })
+        let alertController2 = UIAlertController(title: "配膳完了",message: "", preferredStyle: UIAlertControllerStyle.alert)
+        let okAction2 = UIAlertAction(title: "OK", style: UIAlertActionStyle.default){ (action: UIAlertAction) in
+            self.DBRef1.child("table/status").child(self.tableNumber!).setValue(3)
+            //オーダーキーのリセット
+            var hogekey : String?
+            let defaultPlace = self.DBRef1.child("table/orderkey").child(self.tableNumber!)
+            defaultPlace.observeSingleEvent(of: .value, with: { (snapshot) in
+                hogekey = (snapshot.value! as AnyObject).description
+                self.DBRef1.child("table/orderorder").child(hogekey!).setValue(nil)
+                self.DBRef1.child("table/orderkey").child(self.tableNumber!).setValue(nil)
+                print("hoge1")
+            })
+        }
+        let cancelButton2 = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel, handler: nil)
+        
+        alertController2.addAction(okAction2)
+        alertController2.addAction(cancelButton2)
+        
+        present(alertController2,animated: true,completion: nil)
+        
     }
     
     @IBAction func dlete(_ sender: Any) {
-        B1AmountLabel.text = "0"
-        S1AmountLabel.text = "0"
-        D1AmountLabel.text = "0"
-        De1AmountLabel.text = "0"
-        B1StepperValue.value = 0
-        S1StepperValue.value = 0
-        D1StepperValue.value = 0
-        De1StepperValue.value = 0
-        self.DBRef1.child("table/order").child(self.tableNumber!).setValue(["b1amount":0,"s1amount":0,"d1amount":0,"de1amount":0,"time":0])
-        self.DBRef1.child("table/status").child(self.tableNumber!).setValue(0)
-        var hogekey : String?
-        let defaultPlace = DBRef1.child("table/orderkey").child(tableNumber!)
-        defaultPlace.observeSingleEvent(of: .value, with: { (snapshot) in
-            hogekey = (snapshot.value! as AnyObject).description
-            self.DBRef1.child("table/orderorder").child(hogekey!).setValue(nil)
-            self.DBRef1.child("table/orderkey").child(self.tableNumber!).setValue(nil)
-        })
+        let alertController3 = UIAlertController(title: "削除",message: "", preferredStyle: UIAlertControllerStyle.alert)
+        let okAction3 = UIAlertAction(title: "OK", style: UIAlertActionStyle.default){ (action: UIAlertAction) in
+            self.B1AmountLabel.text = "0"
+            self.S1AmountLabel.text = "0"
+            self.D1AmountLabel.text = "0"
+            self.De1AmountLabel.text = "0"
+            self.B1StepperValue.value = 0
+            self.S1StepperValue.value = 0
+            self.D1StepperValue.value = 0
+            self.De1StepperValue.value = 0
+            self.DBRef1.child("table/order").child(self.tableNumber!).setValue(["b1amount":0,"s1amount":0,"d1amount":0,"de1amount":0,"time":0])
+            self.DBRef1.child("table/status").child(self.tableNumber!).setValue(0)
+            //オーダーキーのリセット
+            var hogekey : String?
+            let defaultPlace1 = self.DBRef1.child("table/orderkey").child(self.tableNumber!)
+            defaultPlace1.observeSingleEvent(of: .value, with: { (snapshot) in
+                hogekey = (snapshot.value! as AnyObject).description
+                self.DBRef1.child("table/orderorder").child(hogekey!).setValue(nil)
+                self.DBRef1.child("table/orderkey").child(self.tableNumber!).setValue(nil)
+                print("hoge2")
+            })
+        }
+        let cancelButton3 = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel, handler: nil)
+        
+        alertController3.addAction(okAction3)
+        alertController3.addAction(cancelButton3)
+        
+        present(alertController3,animated: true,completion: nil)
 }
     
     @IBAction func load(_ sender: Any) {
