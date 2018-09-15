@@ -94,7 +94,9 @@ class SubViewController: UIViewController{
     @IBAction func complete(_ sender: Any) {
         let alertController2 = UIAlertController(title: "配膳完了",message: "", preferredStyle: UIAlertControllerStyle.alert)
         let okAction2 = UIAlertAction(title: "OK", style: UIAlertActionStyle.default){ (action: UIAlertAction) in
-            self.DBRef1.child("table/status").child(self.tableNumber!).setValue(3)
+            self.DBRef1.child("table/status").child(self.tableNumber!).setValue(4)
+            self.DBRef1.child("table/bsstatus").child(self.tableNumber!).setValue(0)
+            self.DBRef1.child("table/ddstatus").child(self.tableNumber!).setValue(0)
             //オーダーキーのリセット
             var hogekey : String?
             let defaultPlace = self.DBRef1.child("table/orderkey").child(self.tableNumber!)
@@ -102,7 +104,6 @@ class SubViewController: UIViewController{
                 hogekey = (snapshot.value! as AnyObject).description
                 self.DBRef1.child("table/orderorder").child(hogekey!).setValue(nil)
                 self.DBRef1.child("table/orderkey").child(self.tableNumber!).setValue(nil)
-                print("hoge1")
             })
         }
         let cancelButton2 = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel, handler: nil)
@@ -127,6 +128,8 @@ class SubViewController: UIViewController{
             self.De1StepperValue.value = 0
             self.DBRef1.child("table/order").child(self.tableNumber!).setValue(["b1amount":0,"s1amount":0,"d1amount":0,"de1amount":0,"time":0])
             self.DBRef1.child("table/status").child(self.tableNumber!).setValue(0)
+            self.DBRef1.child("table/bsstatus").child(self.tableNumber!).setValue(0)
+            self.DBRef1.child("table/ddstatus").child(self.tableNumber!).setValue(0)
             //オーダーキーのリセット
             var hogekey : String?
             let defaultPlace1 = self.DBRef1.child("table/orderkey").child(self.tableNumber!)
@@ -134,7 +137,6 @@ class SubViewController: UIViewController{
                 hogekey = (snapshot.value! as AnyObject).description
                 self.DBRef1.child("table/orderorder").child(hogekey!).setValue(nil)
                 self.DBRef1.child("table/orderkey").child(self.tableNumber!).setValue(nil)
-                print("hoge2")
             })
         }
         let cancelButton3 = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel, handler: nil)

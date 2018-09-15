@@ -37,8 +37,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             }else if intstatus1! == 1{
                 cell.contentView.backgroundColor = UIColor.yellow
             }else if intstatus1! == 2{
-                cell.contentView.backgroundColor = UIColor.red
+                cell.contentView.backgroundColor = UIColor.magenta
             }else if intstatus1! == 3{
+                cell.contentView.backgroundColor = UIColor.red
+            }else if intstatus1! == 4{
                 cell.contentView.backgroundColor = UIColor.cyan
             }
         }
