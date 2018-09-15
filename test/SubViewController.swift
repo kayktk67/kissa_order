@@ -87,8 +87,6 @@ class SubViewController: UIViewController{
         alertController1.addAction(okAction1)
         alertController1.addAction(cancelButton1)
         present(alertController1,animated: true,completion: nil)
-        
-        
     }
     
     @IBAction func complete(_ sender: Any) {

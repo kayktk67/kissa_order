@@ -26,7 +26,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "MainCell", for: indexPath)
         // セルに表示する値を設定する
         cell.textLabel!.text = "Table" + number[indexPath.row]
-        //満席表示
+        //席ステータス表示
         var status1 : String?
         var intstatus1 : Int?
         let defaultPlace = DBRef.child("table/status").child(number[indexPath.row])
