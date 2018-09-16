@@ -32,8 +32,15 @@ class SubViewController: UIViewController{
     var d1amount : String?
     var de1amount : String?
     var hoge : String?
+    var allb1amount : String?
+    var alls1amount : String?
+    var alld1amount : String?
+    var allde1amount : String?
+    var newallb1amount : Int?
+    var newalls1amount : Int?
+    var newalld1amount : Int?
+    var newallde1amount : Int?
 
-    
     
     //Stepper
     @IBAction func B1Stepper(_ sender: UIStepper) {
@@ -70,6 +77,32 @@ class SubViewController: UIViewController{
             let key = self.DBRef1.child("table/orderorder").childByAutoId().key;
             self.DBRef1.child("table/orderorder").child(key).setValue(self.tableNumber!)
             self.DBRef1.child("table/orderkey").child(self.tableNumber!).setValue(key)
+            
+            //全食数の更新
+            let defaultPlace = self.DBRef1.child("table/allorder/allb1amount")
+            defaultPlace.observeSingleEvent(of: .value, with: { (snapshot) in
+                self.allb1amount = (snapshot.value! as AnyObject).description
+                self.newallb1amount = Int(self.allb1amount!)! - Int(self.b1amount!)!
+                self.DBRef1.child("table/allorder/allb1amount").setValue(self.newallb1amount)
+            })
+            let defaultPlace1 = self.DBRef1.child("table/allorder/alls1amount")
+            defaultPlace1.observeSingleEvent(of: .value, with: { (snapshot) in
+                self.alls1amount = (snapshot.value! as AnyObject).description
+                self.newalls1amount = Int(self.alls1amount!)! - Int(self.s1amount!)!
+                self.DBRef1.child("table/allorder/alls1amount").setValue(self.newalls1amount)
+            })
+            let defaultPlace2 = self.DBRef1.child("table/allorder/alld1amount")
+            defaultPlace2.observeSingleEvent(of: .value, with: { (snapshot) in
+                self.alld1amount = (snapshot.value! as AnyObject).description
+                self.newalld1amount = Int(self.alld1amount!)! - Int(self.d1amount!)!
+                self.DBRef1.child("table/allorder/alld1amount").setValue(self.newalld1amount)
+            })
+            let defaultPlace3 = self.DBRef1.child("table/allorder/allde1amount")
+            defaultPlace3.observeSingleEvent(of: .value, with: { (snapshot) in
+                self.allde1amount = (snapshot.value! as AnyObject).description
+                self.newallde1amount = Int(self.allde1amount!)! - Int(self.de1amount!)!
+                self.DBRef1.child("table/allorder/allde1amount").setValue(self.newallde1amount)
+            })
             
             //新規テーブルの区別
             //let defaultPlace = DBRef.child("table/status").child(tableNumber!)
@@ -116,6 +149,36 @@ class SubViewController: UIViewController{
     @IBAction func dlete(_ sender: Any) {
         let alertController3 = UIAlertController(title: "削除",message: "", preferredStyle: UIAlertControllerStyle.alert)
         let okAction3 = UIAlertAction(title: "OK", style: UIAlertActionStyle.default){ (action: UIAlertAction) in
+            //全食数の更新
+            let defaultPlace = self.DBRef1.child("table/allorder/allb1amount")
+            defaultPlace.observeSingleEvent(of: .value, with: { (snapshot) in
+                self.allb1amount = (snapshot.value! as AnyObject).description
+                self.newallb1amount = Int(self.allb1amount!)! + Int(self.b1amount!)!
+                self.DBRef1.child("table/allorder/allb1amount").setValue(self.newallb1amount)
+                self.DBRef1.child("table/order").child(self.tableNumber!).child("b1amount").setValue(0)
+            })
+            let defaultPlace1 = self.DBRef1.child("table/allorder/alls1amount")
+            defaultPlace1.observeSingleEvent(of: .value, with: { (snapshot) in
+                self.alls1amount = (snapshot.value! as AnyObject).description
+                self.newalls1amount = Int(self.alls1amount!)! + Int(self.s1amount!)!
+                self.DBRef1.child("table/allorder/alls1amount").setValue(self.newalls1amount)
+                self.DBRef1.child("table/order").child(self.tableNumber!).child("s1amount").setValue(0)
+            })
+            let defaultPlace2 = self.DBRef1.child("table/allorder/alld1amount")
+            defaultPlace2.observeSingleEvent(of: .value, with: { (snapshot) in
+                self.alld1amount = (snapshot.value! as AnyObject).description
+                self.newalld1amount = Int(self.alld1amount!)! + Int(self.d1amount!)!
+                self.DBRef1.child("table/allorder/alld1amount").setValue(self.newalld1amount)
+                self.DBRef1.child("table/order").child(self.tableNumber!).child("d1amount").setValue(0)
+            })
+            let defaultPlace3 = self.DBRef1.child("table/allorder/allde1amount")
+            defaultPlace3.observeSingleEvent(of: .value, with: { (snapshot) in
+                self.allde1amount = (snapshot.value! as AnyObject).description
+                self.newallde1amount = Int(self.allde1amount!)! + Int(self.de1amount!)!
+                self.DBRef1.child("table/allorder/allde1amount").setValue(self.newallde1amount)
+                self.DBRef1.child("table/order").child(self.tableNumber!).child("de1amount").setValue(0)
+            })
+            
             self.B1AmountLabel.text = "0"
             self.S1AmountLabel.text = "0"
             self.D1AmountLabel.text = "0"
@@ -124,14 +187,14 @@ class SubViewController: UIViewController{
             self.S1StepperValue.value = 0
             self.D1StepperValue.value = 0
             self.De1StepperValue.value = 0
-            self.DBRef1.child("table/order").child(self.tableNumber!).setValue(["b1amount":0,"s1amount":0,"d1amount":0,"de1amount":0,"time":0])
+            self.DBRef1.child("table/order").child(self.tableNumber!).child("time").setValue(0)
             self.DBRef1.child("table/status").child(self.tableNumber!).setValue(0)
             self.DBRef1.child("table/bsstatus").child(self.tableNumber!).setValue(0)
             self.DBRef1.child("table/ddstatus").child(self.tableNumber!).setValue(0)
             //オーダーキーのリセット
             var hogekey : String?
-            let defaultPlace1 = self.DBRef1.child("table/orderkey").child(self.tableNumber!)
-            defaultPlace1.observeSingleEvent(of: .value, with: { (snapshot) in
+            let defaultPlace4 = self.DBRef1.child("table/orderkey").child(self.tableNumber!)
+            defaultPlace4.observeSingleEvent(of: .value, with: { (snapshot) in
                 hogekey = (snapshot.value! as AnyObject).description
                 self.DBRef1.child("table/orderorder").child(hogekey!).setValue(nil)
                 self.DBRef1.child("table/orderkey").child(self.tableNumber!).setValue(nil)
@@ -145,7 +208,19 @@ class SubViewController: UIViewController{
         present(alertController3,animated: true,completion: nil)
 }
     
-    @IBAction func load(_ sender: Any) {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        //インスタンスを作成
+        DBRef1 = Database.database().reference()
+        Timer.scheduledTimer(
+            timeInterval: 0.1,
+            target: self,
+            selector: #selector(self.amountload(_:)),
+            userInfo: nil,
+            repeats: false
+        )
+    }
+    @objc func amountload(_ sender: Timer) {
         let defaultPlace = DBRef1.child("table/order").child(tableNumber!).child("b1amount")
         defaultPlace.observe(.value) { (snap: DataSnapshot) in self.b1amount = (snap.value! as AnyObject).description
             self.B1AmountLabel.text = self.b1amount!
@@ -166,12 +241,6 @@ class SubViewController: UIViewController{
             self.De1AmountLabel.text = self.de1amount!
             self.De1StepperValue.value = Double(Int(self.de1amount!)!)
         }
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        //インスタンスを作成
-        DBRef1 = Database.database().reference()
     }
     
     override func didReceiveMemoryWarning() {
