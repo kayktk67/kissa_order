@@ -12,18 +12,39 @@ import Firebase
 class SubViewController: UIViewController{
     //ラベルのコネクション
     @IBOutlet weak var B1AmountLabel: UILabel!
+    @IBOutlet weak var B2AmountLabel: UILabel!
     @IBOutlet weak var S1AmountLabel: UILabel!
     @IBOutlet weak var D1AmountLabel: UILabel!
+    @IBOutlet weak var D2AmountLabel: UILabel!
+    @IBOutlet weak var D3AmountLabel: UILabel!
+    @IBOutlet weak var D4AmountLabel: UILabel!
     @IBOutlet weak var De1AmountLabel: UILabel!
+    @IBOutlet weak var De2AmountLabel: UILabel!
+    @IBOutlet weak var De3AmountLabel: UILabel!
+    
     @IBOutlet weak var B1StepperValue: UIStepper!
+    @IBOutlet weak var B2StepperValue: UIStepper!
     @IBOutlet weak var S1StepperValue: UIStepper!
     @IBOutlet weak var D1StepperValue: UIStepper!
+    @IBOutlet weak var D2StepperValue: UIStepper!
+    @IBOutlet weak var D3StepperValue: UIStepper!
+    @IBOutlet weak var D4StepperValue: UIStepper!
     @IBOutlet weak var De1StepperValue: UIStepper!
+    @IBOutlet weak var De2StepperValue: UIStepper!
+    @IBOutlet weak var De3StepperValue: UIStepper!
+    
     
     @IBOutlet weak var AllB1AmountLabel: UILabel!
+    @IBOutlet weak var AllB2AmountLabel: UILabel!
     @IBOutlet weak var AllS1AmountLabel: UILabel!
     @IBOutlet weak var AllD1AmountLabel: UILabel!
+    @IBOutlet weak var AllD2AmountLabel: UILabel!
+    @IBOutlet weak var AllD3AmountLabel: UILabel!
+    @IBOutlet weak var AllD4AmountLabel: UILabel!
     @IBOutlet weak var AllDe1AmountLabel: UILabel!
+    @IBOutlet weak var AllDe2AmountLabel: UILabel!
+    @IBOutlet weak var AllDe3AmountLabel: UILabel!
+    
     @IBOutlet weak var tableNumberLabel: UILabel!
     
     var tableNumber : String?
@@ -32,18 +53,36 @@ class SubViewController: UIViewController{
     var status2 : String?
     var intstatus2 : Int?
     var b1amount : String?
+    var b2amount : String?
     var s1amount : String?
     var d1amount : String?
+    var d2amount : String?
+    var d3amount : String?
+    var d4amount : String?
     var de1amount : String?
+    var de2amount : String?
+    var de3amount : String?
     var hoge : String?
     var allb1amount : String?
+    var allb2amount : String?
     var alls1amount : String?
     var alld1amount : String?
+    var alld2amount : String?
+    var alld3amount : String?
+    var alld4amount : String?
     var allde1amount : String?
+    var allde2amount : String?
+    var allde3amount : String?
     var newallb1amount : Int?
+    var newallb2amount : Int?
     var newalls1amount : Int?
     var newalld1amount : Int?
+    var newalld2amount : Int?
+    var newalld3amount : Int?
+    var newalld4amount : Int?
     var newallde1amount : Int?
+    var newallde2amount : Int?
+    var newallde3amount : Int?
 
     
     //Stepper
@@ -51,18 +90,43 @@ class SubViewController: UIViewController{
         let Amount = Int(sender.value)
         B1AmountLabel.text = "\(Amount)"
     }
+    @IBAction func B2Stepper(_ sender: UIStepper) {
+        let Amount = Int(sender.value)
+        B2AmountLabel.text = "\(Amount)"
+    }
     @IBAction func S1Stepper(_ sender: UIStepper) {
         let Amount = Int(sender.value)
         S1AmountLabel.text = "\(Amount)"
     }
-    @IBAction func D1AmountLabel(_ sender: UIStepper) {
+    @IBAction func D1Stepper(_ sender: UIStepper) {
         let Amount = Int(sender.value)
         D1AmountLabel.text = "\(Amount)"
+    }
+    @IBAction func D2Stepper(_ sender: UIStepper) {
+        let Amount = Int(sender.value)
+        D2AmountLabel.text = "\(Amount)"
+    }
+    @IBAction func D3Stepper(_ sender: UIStepper) {
+        let Amount = Int(sender.value)
+        D3AmountLabel.text = "\(Amount)"
+    }
+    @IBAction func D4Stepper(_ sender: UIStepper) {
+        let Amount = Int(sender.value)
+        D4AmountLabel.text = "\(Amount)"
     }
     @IBAction func De1Stepper(_ sender: UIStepper) {
         let Amount = Int(sender.value)
         De1AmountLabel.text = "\(Amount)"
     }
+    @IBAction func De2Stepper(_ sender: UIStepper) {
+        let Amount = Int(sender.value)
+        De2AmountLabel.text = "\(Amount)"
+    }
+    @IBAction func De3Stepper(_ sender: UIStepper) {
+        let Amount = Int(sender.value)
+        De3AmountLabel.text = "\(Amount)"
+    }
+    
     
     
     //各ボタン機能
@@ -72,10 +136,16 @@ class SubViewController: UIViewController{
             
             //オーダーの入力
             self.b1amount = self.B1AmountLabel.text
+            self.b2amount = self.B2AmountLabel.text
             self.s1amount = self.S1AmountLabel.text
             self.d1amount = self.D1AmountLabel.text
+            self.d2amount = self.D2AmountLabel.text
+            self.d3amount = self.D3AmountLabel.text
+            self.d4amount = self.D4AmountLabel.text
             self.de1amount = self.De1AmountLabel.text
-            self.DBRef1.child("table/order").child(self.tableNumber!).setValue(["b1amount":self.b1amount!,"s1amount":self.s1amount!,"d1amount":self.d1amount!,"de1amount":self.de1amount!, "time":ServerValue.timestamp()])
+            self.de2amount = self.De2AmountLabel.text
+            self.de3amount = self.De3AmountLabel.text
+            self.DBRef1.child("table/order").child(self.tableNumber!).setValue(["b1amount":self.b1amount!,"b2amount":self.b2amount!,"b3amount":0,"b4amount":0,"s1amount":self.s1amount!,"d1amount":self.d1amount!,"d2amount":self.d2amount!,"d3amount":self.d3amount!,"d4amount":self.d4amount!,"de1amount":self.de1amount!,"de2amount":self.de2amount!,"de3amount":self.de3amount!, "time":ServerValue.timestamp()])
             
             //オーダーキーの設定
             let key = self.DBRef1.child("table/orderorder").childByAutoId().key;
@@ -89,23 +159,59 @@ class SubViewController: UIViewController{
                 self.newallb1amount = Int(self.allb1amount!)! - Int(self.b1amount!)!
                 self.DBRef1.child("table/allorder/allb1amount").setValue(self.newallb1amount)
             })
-            let defaultPlace1 = self.DBRef1.child("table/allorder/alls1amount")
+            let defaultPlace1 = self.DBRef1.child("table/allorder/allb2amount")
             defaultPlace1.observeSingleEvent(of: .value, with: { (snapshot) in
+                self.allb2amount = (snapshot.value! as AnyObject).description
+                self.newallb2amount = Int(self.allb2amount!)! - Int(self.b2amount!)!
+                self.DBRef1.child("table/allorder/allb2amount").setValue(self.newallb2amount)
+            })
+            let defaultPlace2 = self.DBRef1.child("table/allorder/alls1amount")
+            defaultPlace2.observeSingleEvent(of: .value, with: { (snapshot) in
                 self.alls1amount = (snapshot.value! as AnyObject).description
                 self.newalls1amount = Int(self.alls1amount!)! - Int(self.s1amount!)!
                 self.DBRef1.child("table/allorder/alls1amount").setValue(self.newalls1amount)
             })
-            let defaultPlace2 = self.DBRef1.child("table/allorder/alld1amount")
-            defaultPlace2.observeSingleEvent(of: .value, with: { (snapshot) in
+            let defaultPlace3 = self.DBRef1.child("table/allorder/alld1amount")
+            defaultPlace3.observeSingleEvent(of: .value, with: { (snapshot) in
                 self.alld1amount = (snapshot.value! as AnyObject).description
                 self.newalld1amount = Int(self.alld1amount!)! - Int(self.d1amount!)!
                 self.DBRef1.child("table/allorder/alld1amount").setValue(self.newalld1amount)
             })
-            let defaultPlace3 = self.DBRef1.child("table/allorder/allde1amount")
-            defaultPlace3.observeSingleEvent(of: .value, with: { (snapshot) in
+            let defaultPlace4 = self.DBRef1.child("table/allorder/alld2amount")
+            defaultPlace4.observeSingleEvent(of: .value, with: { (snapshot) in
+                self.alld2amount = (snapshot.value! as AnyObject).description
+                self.newalld2amount = Int(self.alld2amount!)! - Int(self.d2amount!)!
+                self.DBRef1.child("table/allorder/alld2amount").setValue(self.newalld2amount)
+            })
+            let defaultPlace5 = self.DBRef1.child("table/allorder/alld3amount")
+            defaultPlace5.observeSingleEvent(of: .value, with: { (snapshot) in
+                self.alld3amount = (snapshot.value! as AnyObject).description
+                self.newalld3amount = Int(self.alld3amount!)! - Int(self.d3amount!)!
+                self.DBRef1.child("table/allorder/alld3amount").setValue(self.newalld3amount)
+            })
+            let defaultPlace6 = self.DBRef1.child("table/allorder/alld4amount")
+            defaultPlace6.observeSingleEvent(of: .value, with: { (snapshot) in
+                self.alld4amount = (snapshot.value! as AnyObject).description
+                self.newalld4amount = Int(self.alld4amount!)! - Int(self.d4amount!)!
+                self.DBRef1.child("table/allorder/alld4amount").setValue(self.newalld4amount)
+            })
+            let defaultPlace7 = self.DBRef1.child("table/allorder/allde1amount")
+            defaultPlace7.observeSingleEvent(of: .value, with: { (snapshot) in
                 self.allde1amount = (snapshot.value! as AnyObject).description
                 self.newallde1amount = Int(self.allde1amount!)! - Int(self.de1amount!)!
                 self.DBRef1.child("table/allorder/allde1amount").setValue(self.newallde1amount)
+            })
+            let defaultPlace8 = self.DBRef1.child("table/allorder/allde2amount")
+            defaultPlace8.observeSingleEvent(of: .value, with: { (snapshot) in
+                self.allde2amount = (snapshot.value! as AnyObject).description
+                self.newallde2amount = Int(self.allde2amount!)! - Int(self.de2amount!)!
+                self.DBRef1.child("table/allorder/allde2amount").setValue(self.newallde2amount)
+            })
+            let defaultPlace9 = self.DBRef1.child("table/allorder/allde3amount")
+            defaultPlace9.observeSingleEvent(of: .value, with: { (snapshot) in
+                self.allde3amount = (snapshot.value! as AnyObject).description
+                self.newallde3amount = Int(self.allde3amount!)! - Int(self.de3amount!)!
+                self.DBRef1.child("table/allorder/allde3amount").setValue(self.newallde3amount)
             })
             
             //新規テーブルの区別
@@ -161,44 +267,98 @@ class SubViewController: UIViewController{
                 self.DBRef1.child("table/allorder/allb1amount").setValue(self.newallb1amount)
                 self.DBRef1.child("table/order").child(self.tableNumber!).child("b1amount").setValue(0)
             })
-            let defaultPlace1 = self.DBRef1.child("table/allorder/alls1amount")
+            let defaultPlace1 = self.DBRef1.child("table/allorder/allb2amount")
             defaultPlace1.observeSingleEvent(of: .value, with: { (snapshot) in
+                self.allb2amount = (snapshot.value! as AnyObject).description
+                self.newallb2amount = Int(self.allb2amount!)! + Int(self.b2amount!)!
+                self.DBRef1.child("table/allorder/allb2amount").setValue(self.newallb2amount)
+                self.DBRef1.child("table/order").child(self.tableNumber!).child("b2amount").setValue(0)
+            })
+            let defaultPlace2 = self.DBRef1.child("table/allorder/alls1amount")
+            defaultPlace2.observeSingleEvent(of: .value, with: { (snapshot) in
                 self.alls1amount = (snapshot.value! as AnyObject).description
                 self.newalls1amount = Int(self.alls1amount!)! + Int(self.s1amount!)!
                 self.DBRef1.child("table/allorder/alls1amount").setValue(self.newalls1amount)
                 self.DBRef1.child("table/order").child(self.tableNumber!).child("s1amount").setValue(0)
             })
-            let defaultPlace2 = self.DBRef1.child("table/allorder/alld1amount")
-            defaultPlace2.observeSingleEvent(of: .value, with: { (snapshot) in
+            let defaultPlace3 = self.DBRef1.child("table/allorder/alld1amount")
+            defaultPlace3.observeSingleEvent(of: .value, with: { (snapshot) in
                 self.alld1amount = (snapshot.value! as AnyObject).description
                 self.newalld1amount = Int(self.alld1amount!)! + Int(self.d1amount!)!
                 self.DBRef1.child("table/allorder/alld1amount").setValue(self.newalld1amount)
                 self.DBRef1.child("table/order").child(self.tableNumber!).child("d1amount").setValue(0)
             })
-            let defaultPlace3 = self.DBRef1.child("table/allorder/allde1amount")
-            defaultPlace3.observeSingleEvent(of: .value, with: { (snapshot) in
+            let defaultPlace4 = self.DBRef1.child("table/allorder/alld2amount")
+            defaultPlace4.observeSingleEvent(of: .value, with: { (snapshot) in
+                self.alld2amount = (snapshot.value! as AnyObject).description
+                self.newalld2amount = Int(self.alld2amount!)! + Int(self.d2amount!)!
+                self.DBRef1.child("table/allorder/alld2amount").setValue(self.newalld2amount)
+                self.DBRef1.child("table/order").child(self.tableNumber!).child("d2amount").setValue(0)
+            })
+            let defaultPlace5 = self.DBRef1.child("table/allorder/alld3amount")
+            defaultPlace5.observeSingleEvent(of: .value, with: { (snapshot) in
+                self.alld3amount = (snapshot.value! as AnyObject).description
+                self.newalld3amount = Int(self.alld3amount!)! + Int(self.d3amount!)!
+                self.DBRef1.child("table/allorder/alld3amount").setValue(self.newalld3amount)
+                self.DBRef1.child("table/order").child(self.tableNumber!).child("d3amount").setValue(0)
+            })
+            let defaultPlace6 = self.DBRef1.child("table/allorder/alld4amount")
+            defaultPlace6.observeSingleEvent(of: .value, with: { (snapshot) in
+                self.alld4amount = (snapshot.value! as AnyObject).description
+                self.newalld4amount = Int(self.alld4amount!)! + Int(self.d4amount!)!
+                self.DBRef1.child("table/allorder/alld4amount").setValue(self.newalld4amount)
+                self.DBRef1.child("table/order").child(self.tableNumber!).child("d4amount").setValue(0)
+            })
+            let defaultPlace7 = self.DBRef1.child("table/allorder/allde1amount")
+            defaultPlace7.observeSingleEvent(of: .value, with: { (snapshot) in
                 self.allde1amount = (snapshot.value! as AnyObject).description
                 self.newallde1amount = Int(self.allde1amount!)! + Int(self.de1amount!)!
                 self.DBRef1.child("table/allorder/allde1amount").setValue(self.newallde1amount)
                 self.DBRef1.child("table/order").child(self.tableNumber!).child("de1amount").setValue(0)
             })
+            let defaultPlace8 = self.DBRef1.child("table/allorder/allde2amount")
+            defaultPlace8.observeSingleEvent(of: .value, with: { (snapshot) in
+                self.allde2amount = (snapshot.value! as AnyObject).description
+                self.newallde2amount = Int(self.allde2amount!)! + Int(self.de2amount!)!
+                self.DBRef1.child("table/allorder/allde2amount").setValue(self.newallde2amount)
+                self.DBRef1.child("table/order").child(self.tableNumber!).child("de2amount").setValue(0)
+            })
+            let defaultPlace9 = self.DBRef1.child("table/allorder/allde3amount")
+            defaultPlace9.observeSingleEvent(of: .value, with: { (snapshot) in
+                self.allde3amount = (snapshot.value! as AnyObject).description
+                self.newallde3amount = Int(self.allde3amount!)! + Int(self.de3amount!)!
+                self.DBRef1.child("table/allorder/allde3amount").setValue(self.newallde3amount)
+                self.DBRef1.child("table/order").child(self.tableNumber!).child("de3amount").setValue(0)
+            })
             
             self.B1AmountLabel.text = "0"
+            self.B2AmountLabel.text = "0"
             self.S1AmountLabel.text = "0"
             self.D1AmountLabel.text = "0"
+            self.D2AmountLabel.text = "0"
+            self.D3AmountLabel.text = "0"
+            self.D4AmountLabel.text = "0"
             self.De1AmountLabel.text = "0"
+            self.De2AmountLabel.text = "0"
+            self.De3AmountLabel.text = "0"
             self.B1StepperValue.value = 0
+            self.B2StepperValue.value = 0
             self.S1StepperValue.value = 0
             self.D1StepperValue.value = 0
+            self.D2StepperValue.value = 0
+            self.D3StepperValue.value = 0
+            self.D4StepperValue.value = 0
             self.De1StepperValue.value = 0
+            self.De2StepperValue.value = 0
+            self.De3StepperValue.value = 0
             self.DBRef1.child("table/order").child(self.tableNumber!).child("time").setValue(0)
             self.DBRef1.child("table/status").child(self.tableNumber!).setValue(0)
             self.DBRef1.child("table/bsstatus").child(self.tableNumber!).setValue(0)
             self.DBRef1.child("table/ddstatus").child(self.tableNumber!).setValue(0)
             //オーダーキーのリセット
             var hogekey : String?
-            let defaultPlace4 = self.DBRef1.child("table/orderkey").child(self.tableNumber!)
-            defaultPlace4.observeSingleEvent(of: .value, with: { (snapshot) in
+            let defaultPlace10 = self.DBRef1.child("table/orderkey").child(self.tableNumber!)
+            defaultPlace10.observeSingleEvent(of: .value, with: { (snapshot) in
                 hogekey = (snapshot.value! as AnyObject).description
                 self.DBRef1.child("table/orderorder").child(hogekey!).setValue(nil)
                 self.DBRef1.child("table/orderkey").child(self.tableNumber!).setValue(nil)
@@ -230,38 +390,92 @@ class SubViewController: UIViewController{
             self.B1AmountLabel.text = self.b1amount!
             self.B1StepperValue.value = Double(Int(self.b1amount!)!)
         }
-        let defaultPlace1 = DBRef1.child("table/order").child(tableNumber!).child("s1amount")
-        defaultPlace1.observe(.value) { (snap: DataSnapshot) in self.s1amount = (snap.value! as AnyObject).description
+        let defaultPlace1 = DBRef1.child("table/order").child(tableNumber!).child("b2amount")
+        defaultPlace1.observe(.value) { (snap: DataSnapshot) in self.b2amount = (snap.value! as AnyObject).description
+            self.B2AmountLabel.text = self.b2amount!
+            self.B2StepperValue.value = Double(Int(self.b2amount!)!)
+        }
+        let defaultPlace2 = DBRef1.child("table/order").child(tableNumber!).child("s1amount")
+        defaultPlace2.observe(.value) { (snap: DataSnapshot) in self.s1amount = (snap.value! as AnyObject).description
             self.S1AmountLabel.text = self.s1amount!
             self.S1StepperValue.value = Double(Int(self.s1amount!)!)
         }
-        let defaultPlace2 = DBRef1.child("table/order").child(tableNumber!).child("d1amount")
-        defaultPlace2.observe(.value) { (snap: DataSnapshot) in self.d1amount = (snap.value! as AnyObject).description
+        let defaultPlace3 = DBRef1.child("table/order").child(tableNumber!).child("d1amount")
+        defaultPlace3.observe(.value) { (snap: DataSnapshot) in self.d1amount = (snap.value! as AnyObject).description
             self.D1AmountLabel.text = self.d1amount!
             self.D1StepperValue.value = Double(Int(self.d1amount!)!)
         }
-        let defaultPlace3 = DBRef1.child("table/order").child(tableNumber!).child("de1amount")
-        defaultPlace3.observe(.value) { (snap: DataSnapshot) in self.de1amount = (snap.value! as AnyObject).description
+        let defaultPlace4 = DBRef1.child("table/order").child(tableNumber!).child("d2amount")
+        defaultPlace4.observe(.value) { (snap: DataSnapshot) in self.d2amount = (snap.value! as AnyObject).description
+            self.D2AmountLabel.text = self.d2amount!
+            self.D2StepperValue.value = Double(Int(self.d2amount!)!)
+        }
+        let defaultPlace5 = DBRef1.child("table/order").child(tableNumber!).child("d3amount")
+        defaultPlace5.observe(.value) { (snap: DataSnapshot) in self.d3amount = (snap.value! as AnyObject).description
+            self.D3AmountLabel.text = self.d3amount!
+            self.D3StepperValue.value = Double(Int(self.d3amount!)!)
+        }
+        let defaultPlace6 = DBRef1.child("table/order").child(tableNumber!).child("d4amount")
+        defaultPlace6.observe(.value) { (snap: DataSnapshot) in self.d4amount = (snap.value! as AnyObject).description
+            self.D4AmountLabel.text = self.d4amount!
+            self.D4StepperValue.value = Double(Int(self.d4amount!)!)
+        }
+        let defaultPlace7 = DBRef1.child("table/order").child(tableNumber!).child("de1amount")
+        defaultPlace7.observe(.value) { (snap: DataSnapshot) in self.de1amount = (snap.value! as AnyObject).description
             self.De1AmountLabel.text = self.de1amount!
             self.De1StepperValue.value = Double(Int(self.de1amount!)!)
         }
+        let defaultPlace8 = DBRef1.child("table/order").child(tableNumber!).child("de2amount")
+        defaultPlace8.observe(.value) { (snap: DataSnapshot) in self.de2amount = (snap.value! as AnyObject).description
+            self.De2AmountLabel.text = self.de2amount!
+            self.De2StepperValue.value = Double(Int(self.de2amount!)!)
+        }
+        let defaultPlace9 = DBRef1.child("table/order").child(tableNumber!).child("de3amount")
+        defaultPlace9.observe(.value) { (snap: DataSnapshot) in self.de3amount = (snap.value! as AnyObject).description
+            self.De3AmountLabel.text = self.de3amount!
+            self.De3StepperValue.value = Double(Int(self.de3amount!)!)
+        }
         
         //全食数の取得
-        let defaultPlace4 = self.DBRef1.child("table/allorder/allb1amount")
-        defaultPlace4.observeSingleEvent(of: .value, with: { (snapshot) in
+        let defaultPlace10 = self.DBRef1.child("table/allorder/allb1amount")
+        defaultPlace10.observeSingleEvent(of: .value, with: { (snapshot) in
             self.AllB1AmountLabel.text = (snapshot.value! as AnyObject).description
         })
-        let defaultPlace5 = self.DBRef1.child("table/allorder/alls1amount")
-        defaultPlace5.observeSingleEvent(of: .value, with: { (snapshot) in
+        let defaultPlace11 = self.DBRef1.child("table/allorder/allb2amount")
+        defaultPlace11.observeSingleEvent(of: .value, with: { (snapshot) in
+            self.AllB2AmountLabel.text = (snapshot.value! as AnyObject).description
+        })
+        let defaultPlace12 = self.DBRef1.child("table/allorder/alls1amount")
+        defaultPlace12.observeSingleEvent(of: .value, with: { (snapshot) in
             self.AllS1AmountLabel.text = (snapshot.value! as AnyObject).description
         })
-        let defaultPlace6 = self.DBRef1.child("table/allorder/alld1amount")
-        defaultPlace6.observeSingleEvent(of: .value, with: { (snapshot) in
+        let defaultPlace13 = self.DBRef1.child("table/allorder/alld1amount")
+        defaultPlace13.observeSingleEvent(of: .value, with: { (snapshot) in
             self.AllD1AmountLabel.text = (snapshot.value! as AnyObject).description
         })
-        let defaultPlace7 = self.DBRef1.child("table/allorder/allde1amount")
-        defaultPlace7.observeSingleEvent(of: .value, with: { (snapshot) in
+        let defaultPlace14 = self.DBRef1.child("table/allorder/alld2amount")
+        defaultPlace14.observeSingleEvent(of: .value, with: { (snapshot) in
+            self.AllD2AmountLabel.text = (snapshot.value! as AnyObject).description
+        })
+        let defaultPlace15 = self.DBRef1.child("table/allorder/alld3amount")
+        defaultPlace15.observeSingleEvent(of: .value, with: { (snapshot) in
+            self.AllD3AmountLabel.text = (snapshot.value! as AnyObject).description
+        })
+        let defaultPlace16 = self.DBRef1.child("table/allorder/alld4amount")
+        defaultPlace16.observeSingleEvent(of: .value, with: { (snapshot) in
+            self.AllD4AmountLabel.text = (snapshot.value! as AnyObject).description
+        })
+        let defaultPlace17 = self.DBRef1.child("table/allorder/allde1amount")
+        defaultPlace17.observeSingleEvent(of: .value, with: { (snapshot) in
             self.AllDe1AmountLabel.text = (snapshot.value! as AnyObject).description
+        })
+        let defaultPlace18 = self.DBRef1.child("table/allorder/allde2amount")
+        defaultPlace18.observeSingleEvent(of: .value, with: { (snapshot) in
+            self.AllDe2AmountLabel.text = (snapshot.value! as AnyObject).description
+        })
+        let defaultPlace19 = self.DBRef1.child("table/allorder/allde3amount")
+        defaultPlace19.observeSingleEvent(of: .value, with: { (snapshot) in
+            self.AllDe3AmountLabel.text = (snapshot.value! as AnyObject).description
         })
     }
     
