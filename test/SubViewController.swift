@@ -20,6 +20,10 @@ class SubViewController: UIViewController{
     @IBOutlet weak var D1StepperValue: UIStepper!
     @IBOutlet weak var De1StepperValue: UIStepper!
     
+    @IBOutlet weak var AllB1AmountLabel: UILabel!
+    @IBOutlet weak var AllS1AmountLabel: UILabel!
+    @IBOutlet weak var AllD1AmountLabel: UILabel!
+    @IBOutlet weak var AllDe1AmountLabel: UILabel!
     @IBOutlet weak var tableNumberLabel: UILabel!
     
     var tableNumber : String?
@@ -241,6 +245,24 @@ class SubViewController: UIViewController{
             self.De1AmountLabel.text = self.de1amount!
             self.De1StepperValue.value = Double(Int(self.de1amount!)!)
         }
+        
+        //全食数の取得
+        let defaultPlace4 = self.DBRef1.child("table/allorder/allb1amount")
+        defaultPlace4.observeSingleEvent(of: .value, with: { (snapshot) in
+            self.AllB1AmountLabel.text = (snapshot.value! as AnyObject).description
+        })
+        let defaultPlace5 = self.DBRef1.child("table/allorder/alls1amount")
+        defaultPlace5.observeSingleEvent(of: .value, with: { (snapshot) in
+            self.AllS1AmountLabel.text = (snapshot.value! as AnyObject).description
+        })
+        let defaultPlace6 = self.DBRef1.child("table/allorder/alld1amount")
+        defaultPlace6.observeSingleEvent(of: .value, with: { (snapshot) in
+            self.AllD1AmountLabel.text = (snapshot.value! as AnyObject).description
+        })
+        let defaultPlace7 = self.DBRef1.child("table/allorder/allde1amount")
+        defaultPlace7.observeSingleEvent(of: .value, with: { (snapshot) in
+            self.AllDe1AmountLabel.text = (snapshot.value! as AnyObject).description
+        })
     }
     
     override func didReceiveMemoryWarning() {

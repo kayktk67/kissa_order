@@ -213,7 +213,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="twm-hj-LfQ">
-                                <rect key="frame" x="156" y="411" width="102" height="42"/>
+                                <rect key="frame" x="156" y="412" width="102" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <state key="normal" title="配膳完了"/>
@@ -272,6 +272,10 @@
                         <viewLayoutGuide key="safeArea" id="O2g-qj-EEQ"/>
                     </view>
                     <connections>
+                        <outlet property="AllB1AmountLabel" destination="d7z-w5-F5V" id="MMt-L8-edH"/>
+                        <outlet property="AllD1AmountLabel" destination="PGr-Dt-mrs" id="Qyz-70-IKj"/>
+                        <outlet property="AllDe1AmountLabel" destination="O6R-Vu-mcX" id="3wb-ce-g5O"/>
+                        <outlet property="AllS1AmountLabel" destination="BE5-VB-HGn" id="qoJ-u8-h4E"/>
                         <outlet property="B1AmountLabel" destination="I11-za-jEL" id="wSs-zR-Dhp"/>
                         <outlet property="B1StepperValue" destination="nix-4X-7UF" id="wAB-o7-xCd"/>
                         <outlet property="D1AmountLabel" destination="Ugm-sU-1jr" id="ghb-CH-7Kv"/>
