@@ -12,7 +12,7 @@ import Firebase
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var TableView: UITableView!
-    let number = ["001","002","003","004","005","006","007","008","009","010"]
+    let number = ["001","002","003","004","005","006","007","008","009","010","011","012","013","014","015"]
     var tablenumber : String?
     // インスタンス変数
     var DBRef:DatabaseReference!
@@ -48,11 +48,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tablenumber = number[indexPath.row]
         //設定
-        //self.DBRef.child("table/order").child(self.number[indexPath.row]).setValue(["b1amount":0,"b2amount":0,"s1amount":0,"s2amount":0,"s3amount":0,"d1amount":0,"d2amount":0,"d3amount":0,"d4amount":0,"de1amount":0,"de2amount":0,"de3amount":0,"time":0])
-        //self.DBRef.child("table/allorder").setValue(["allb1amount":0,"allb2amount":0,"alls1amount":0,"alls2amount":0,"alls3amount":0,"alld1amount":0,"alld2amount":0,"alld3amount":0,"alld4amount":0,"allde1amount":0,"allde2amount":0,"allde3amount":0])
+        //self.DBRef.child("table/order").child(self.number[indexPath.row]).setValue(["b1amount":0,"b2amount":0,"s1amount":0,"s2amount":0,"s3amount":0,"d1amount":0,"d2amount":0,"d3amount":0,"d4amount":0,"dx1amount":0,"dx2amount":0,"dx3amount":0,"dx4amount":0,"de1amount":0,"de2amount":0,"de3amount":0,"time":0])
+        //self.DBRef.child("table/allorder").setValue(["allb1amount":0,"allb2amount":0,"alls1amount":0,"alls2amount":0,"alls3amount":0,"alld1amount":0,"alld2amount":0,"alld3amount":0,"alld4amount":0,"alldx1amount":0,"alldx2amount":0,"alldx3amount":0,"alldx4amount":0,"allde1amount":0,"allde2amount":0,"allde3amount":0])
+        //self.DBRef.child("table/status").child(self.number[indexPath.row]).setValue(0)
+        //self.DBRef.child("table/bstatus").child(self.number[indexPath.row]).setValue(0)
         //self.DBRef.child("table/tbstatus").child(self.number[indexPath.row]).setValue(0)
+        //self.DBRef.child("table/sstatus").child(self.number[indexPath.row]).setValue(0)
+        //self.DBRef.child("table/dstatus").child(self.number[indexPath.row]).setValue(0)
+        //self.DBRef.child("table/dxstatus").child(self.number[indexPath.row]).setValue(0)
+        //self.DBRef.child("table/destatus").child(self.number[indexPath.row]).setValue(0)
+        //self.DBRef.child("table/setamount").child(self.number[indexPath.row]).setValue(["bset":0,"sset":0,"bsset":0])
         
         performSegue(withIdentifier:"tonextview", sender: nil)
+        
+        
+        
         tableView.deselectRow(at: indexPath, animated:true)
     }
     
