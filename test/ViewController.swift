@@ -39,6 +39,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             }else if intstatus1! == 2{
                 cell.contentView.backgroundColor = UIColor.magenta
             }else if intstatus1! == 3{
+                cell.contentView.backgroundColor = UIColor.red
+            }else if intstatus1! == 4{
                 cell.contentView.backgroundColor = UIColor.cyan
             }
         }
@@ -57,12 +59,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         //self.DBRef.child("table/dstatus").child(self.number[indexPath.row]).setValue(0)
         //self.DBRef.child("table/dxstatus").child(self.number[indexPath.row]).setValue(0)
         //self.DBRef.child("table/destatus").child(self.number[indexPath.row]).setValue(0)
-        //self.DBRef.child("table/setamount").child(self.number[indexPath.row]).setValue(["bset":0,"sset":0,"bsset":0])
+        //self.DBRef.child("table/setamount").child(self.number[indexPath.row]).setValue(["bset":0,"sset":0,"bsset":0,"noice":0])
         
         performSegue(withIdentifier:"tonextview", sender: nil)
-        
-        
-        
         tableView.deselectRow(at: indexPath, animated:true)
     }
     

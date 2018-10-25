@@ -9,19 +9,18 @@
 /* Begin PBXBuildFile section */
 		67E046EAD011E4AB8DD5CD37 /* Pods_test.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 725AA0CB6BA299F38B4118E1 /* Pods_test.framework */; };
 		AA10E9CD213D0D0B0027551D /* SubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA10E9CC213D0D0B0027551D /* SubViewController.swift */; };
-		AA10E9ED213D8C5B0027551D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA10E9EC213D8C5B0027551D /* GoogleService-Info.plist */; };
 		AA550C5A213CB9EF009F4680 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA550C59213CB9EF009F4680 /* AppDelegate.swift */; };
 		AA550C5C213CB9EF009F4680 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA550C5B213CB9EF009F4680 /* ViewController.swift */; };
 		AA550C5F213CB9EF009F4680 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA550C5D213CB9EF009F4680 /* Main.storyboard */; };
 		AA550C61213CB9F2009F4680 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA550C60213CB9F2009F4680 /* Assets.xcassets */; };
 		AA550C64213CB9F2009F4680 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA550C62213CB9F2009F4680 /* LaunchScreen.storyboard */; };
+		AA755DBF21800B2A003E482B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA755DBE21800B2A003E482B /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		03850B6AA75BB057B38AD959 /* Pods-test.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-test.debug.xcconfig"; path = "Pods/Target Support Files/Pods-test/Pods-test.debug.xcconfig"; sourceTree = "<group>"; };
 		725AA0CB6BA299F38B4118E1 /* Pods_test.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_test.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA10E9CC213D0D0B0027551D /* SubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubViewController.swift; sourceTree = "<group>"; };
-		AA10E9EC213D8C5B0027551D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AA550C56213CB9EF009F4680 /* test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA550C59213CB9EF009F4680 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA550C5B213CB9EF009F4680 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -29,6 +28,7 @@
 		AA550C60213CB9F2009F4680 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA550C63213CB9F2009F4680 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AA550C65213CB9F2009F4680 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AA755DBE21800B2A003E482B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E4402060762AE57ECBC19BDF /* Pods-test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-test.release.xcconfig"; path = "Pods/Target Support Files/Pods-test/Pods-test.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -89,7 +89,7 @@
 				AA550C60213CB9F2009F4680 /* Assets.xcassets */,
 				AA550C62213CB9F2009F4680 /* LaunchScreen.storyboard */,
 				AA550C65213CB9F2009F4680 /* Info.plist */,
-				AA10E9EC213D8C5B0027551D /* GoogleService-Info.plist */,
+				AA755DBE21800B2A003E482B /* GoogleService-Info.plist */,
 			);
 			path = test;
 			sourceTree = "<group>";
@@ -155,8 +155,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA755DBF21800B2A003E482B /* GoogleService-Info.plist in Resources */,
 				AA550C64213CB9F2009F4680 /* LaunchScreen.storyboard in Resources */,
-				AA10E9ED213D8C5B0027551D /* GoogleService-Info.plist in Resources */,
 				AA550C61213CB9F2009F4680 /* Assets.xcassets in Resources */,
 				AA550C5F213CB9EF009F4680 /* Main.storyboard in Resources */,
 			);
@@ -367,7 +367,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "kissa---in";
+				PRODUCT_BUNDLE_IDENTIFIER = "kissa---in..";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -387,7 +387,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "kissa---in";
+				PRODUCT_BUNDLE_IDENTIFIER = "kissa---in..";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
