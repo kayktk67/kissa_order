@@ -25,6 +25,7 @@ class SubViewController: UIViewController{
     @IBOutlet weak var De1AmountLabel: UILabel!
     @IBOutlet weak var De2AmountLabel: UILabel!
     @IBOutlet weak var De3AmountLabel: UILabel!
+    @IBOutlet weak var De4AmountLabel: UILabel!
     
     @IBOutlet weak var B1StepperValue: UIStepper!
     @IBOutlet weak var S1StepperValue: UIStepper!
@@ -40,6 +41,7 @@ class SubViewController: UIViewController{
     @IBOutlet weak var De1StepperValue: UIStepper!
     @IBOutlet weak var De2StepperValue: UIStepper!
     @IBOutlet weak var De3StepperValue: UIStepper!
+    @IBOutlet weak var De4StepperValue: UIStepper!
     
     @IBOutlet weak var AllB1AmountLabel: UILabel!
     @IBOutlet weak var AllS1AmountLabel: UILabel!
@@ -55,6 +57,7 @@ class SubViewController: UIViewController{
     @IBOutlet weak var AllDe1AmountLabel: UILabel!
     @IBOutlet weak var AllDe2AmountLabel: UILabel!
     @IBOutlet weak var AllDe3AmountLabel: UILabel!
+    @IBOutlet weak var AllDe4AmountLabel: UILabel!
     @IBOutlet weak var AllSBAmountLabel: UILabel!
     
     @IBOutlet weak var BStatus: UILabel!
@@ -90,6 +93,7 @@ class SubViewController: UIViewController{
     var de1amount : String?
     var de2amount : String?
     var de3amount : String?
+    var de4amount : String?
     var hoge : String?
     var bamount = 0
     var samount = 0
@@ -115,6 +119,7 @@ class SubViewController: UIViewController{
     var allde1amount : String?
     var allde2amount : String?
     var allde3amount : String?
+    var allde4amount : String?
     var allsbamount : String?
     var newallb1amount : Int?
     var newalls1amount : Int?
@@ -130,6 +135,7 @@ class SubViewController: UIViewController{
     var newallde1amount : Int?
     var newallde2amount : Int?
     var newallde3amount : Int?
+    var newallde4amount : Int?
     var newallsbamount : Int?
 
     
@@ -190,6 +196,11 @@ class SubViewController: UIViewController{
         let Amount = Int(sender.value)
         De3AmountLabel.text = "\(Amount)"
     }
+    @IBAction func De4Stepper(_ sender: UIStepper) {
+        let Amount = Int(sender.value)
+        De4AmountLabel.text = "\(Amount)"
+    }
+    
     
     
     //各ボタン機能
@@ -199,7 +210,7 @@ class SubViewController: UIViewController{
         self.ddamount = Int(self.D1AmountLabel.text!)! + Int(self.D3AmountLabel.text!)! + Int(self.D4AmountLabel.text!)!
         self.dxamount = Int(self.DX1AmountLabel.text!)! + Int(self.DX2AmountLabel.text!)! + Int(self.DX3AmountLabel.text!)! + Int(self.DX4AmountLabel.text!)!
         self.damount = self.ddamount + self.dxamount
-        self.deamount = Int(self.De1AmountLabel.text!)! + Int(self.De2AmountLabel.text!)! + Int(self.De3AmountLabel.text!)!
+        self.deamount = Int(self.De1AmountLabel.text!)! + Int(self.De2AmountLabel.text!)! + Int(self.De3AmountLabel.text!)! + Int(self.De4AmountLabel.text!)!
         
         let alertController1 = UIAlertController(title: "注文",message: "", preferredStyle: UIAlertController.Style.alert)
         let okAction1 = UIAlertAction(title: "OK", style: UIAlertAction.Style.default){ (action: UIAlertAction) in
@@ -237,14 +248,14 @@ class SubViewController: UIViewController{
             self.de1amount = self.De1AmountLabel.text
             self.de2amount = self.De2AmountLabel.text
             self.de3amount = self.De3AmountLabel.text
+            self.de4amount = self.De4AmountLabel.text
             self.Bsetamount = self.damount - self.samount
             self.Ssetamount = self.damount - self.bamount
             self.BSsetamount = self.bamount + self.samount - self.damount
             self.noIceAmount = self.damount - self.deamount
             
-            self.DBRef1.child("table/order").child(self.tableNumber!).setValue(["b1amount":self.b1amount!,"b3amount":0,"b4amount":0,"s1amount":self.s1amount!,"s2amount":self.s2amount!,"s3amount":self.s3amount!,"d1amount":self.d1amount!,"d2amount":0,"d3amount":self.d3amount!,"d4amount":self.d4amount!,"dx1amount":self.dx1amount!,"dx2amount":self.dx2amount!,"dx3amount":self.dx3amount!,"dx4amount":self.dx4amount!,"de1amount":self.de1amount!,"de2amount":self.de2amount!,"de3amount":self.de3amount!, "time":ServerValue.timestamp()])
+            self.DBRef1.child("table/order").child(self.tableNumber!).setValue(["b1amount":self.b1amount!,"b3amount":0,"b4amount":0,"s1amount":self.s1amount!,"s2amount":self.s2amount!,"s3amount":self.s3amount!,"d1amount":self.d1amount!,"d2amount":0,"d3amount":self.d3amount!,"d4amount":self.d4amount!,"dx1amount":self.dx1amount!,"dx2amount":self.dx2amount!,"dx3amount":self.dx3amount!,"dx4amount":self.dx4amount!,"de1amount":self.de1amount!,"de2amount":self.de2amount!,"de3amount":self.de3amount!,"de4amount":self.de4amount!, "time":ServerValue.timestamp()])
             self.DBRef1.child("table/status").child(self.tableNumber!).setValue(1)
-            self.DBRef1.child("table/tbstatus").child(self.tableNumber!).setValue(1)
                     self.DBRef1.child("table/setamount").child(self.tableNumber!).setValue(["bset":self.Bsetamount,"sset":self.Ssetamount,"bsset":self.BSsetamount,"noice":self.noIceAmount])
             
             //オーダーキーの設定
@@ -252,7 +263,7 @@ class SubViewController: UIViewController{
             self.DBRef1.child("table/orderorder").child(key).setValue(self.tableNumber!)
             self.DBRef1.child("table/orderkey").child(self.tableNumber!).setValue(key)
             //データセット
-            self.DBRef1.child("indata").child(key).setValue(["time":ServerValue.timestamp(),"table":self.tableNumber!,"b1":self.b1amount!,"s1":self.s1amount!,"s2":self.s2amount!,"s3":self.s3amount!,"d1":self.d1amount!,"d2":0,"d3":self.d3amount!,"d4":self.d4amount!,"dx1":self.dx1amount!,"dx2":self.dx2amount!,"dx3":self.dx3amount!,"dx4":self.dx4amount!,"de1":self.de1amount!,"de2":self.de2amount!,"de3":self.de3amount!,"bset":self.Bsetamount,"sset":self.Ssetamount,"bsset":self.BSsetamount,"noice":self.noIceAmount])
+            self.DBRef1.child("indata").child(key).setValue(["time":ServerValue.timestamp(),"table":self.tableNumber!,"b1":self.b1amount!,"s1":self.s1amount!,"s2":self.s2amount!,"s3":self.s3amount!,"d1":self.d1amount!,"d2":0,"d3":self.d3amount!,"d4":self.d4amount!,"dx1":self.dx1amount!,"dx2":self.dx2amount!,"dx3":self.dx3amount!,"dx4":self.dx4amount!,"de1":self.de1amount!,"de2":self.de2amount!,"de3":self.de3amount!,"de4":self.de4amount!,"bset":self.Bsetamount,"sset":self.Ssetamount,"bsset":self.BSsetamount,"noice":self.noIceAmount])
             
             //全食数の更新
             let defaultPlace = self.DBRef1.child("table/allorder/allb1amount")
@@ -339,6 +350,12 @@ class SubViewController: UIViewController{
                 self.newallde3amount = Int(self.allde3amount!)! - Int(self.de3amount!)!
                 self.DBRef1.child("table/allorder/allde3amount").setValue(self.newallde3amount)
             })
+            let defaultPlace18 = self.DBRef1.child("table/allorder/allde4amount")
+            defaultPlace18.observeSingleEvent(of: .value, with: { (snapshot) in
+                self.allde4amount = (snapshot.value! as AnyObject).description
+                self.newallde4amount = Int(self.allde4amount!)! - Int(self.de4amount!)!
+                self.DBRef1.child("table/allorder/allde4amount").setValue(self.newallde4amount)
+            })
             let defaultPlace17 = self.DBRef1.child("table/allorder/allsbamount")
             defaultPlace17.observeSingleEvent(of: .value, with: { (snapshot) in
                 self.allsbamount = (snapshot.value! as AnyObject).description
@@ -363,7 +380,7 @@ class SubViewController: UIViewController{
         self.ddamount = Int(self.D1AmountLabel.text!)! + Int(self.D3AmountLabel.text!)! + Int(self.D4AmountLabel.text!)!
         self.dxamount = Int(self.DX1AmountLabel.text!)! + Int(self.DX2AmountLabel.text!)! + Int(self.DX3AmountLabel.text!)! + Int(self.DX4AmountLabel.text!)!
         self.damount = self.ddamount + self.dxamount
-        self.deamount = Int(self.De1AmountLabel.text!)! + Int(self.De2AmountLabel.text!)! + Int(self.De3AmountLabel.text!)!
+        self.deamount = Int(self.De1AmountLabel.text!)! + Int(self.De2AmountLabel.text!)! + Int(self.De3AmountLabel.text!)! + Int(self.De4AmountLabel.text!)!
         
         let alertController3 = UIAlertController(title: "削除",message: "", preferredStyle: UIAlertController.Style.alert)
         let okAction3 = UIAlertAction(title: "OK", style: UIAlertAction.Style.default){ (action: UIAlertAction) in
@@ -467,6 +484,13 @@ class SubViewController: UIViewController{
                 self.DBRef1.child("table/allorder/allde3amount").setValue(self.newallde3amount)
                 self.DBRef1.child("table/order").child(self.tableNumber!).child("de3amount").setValue(0)
             })
+            let defaultPlace18 = self.DBRef1.child("table/allorder/allde4amount")
+            defaultPlace18.observeSingleEvent(of: .value, with: { (snapshot) in
+                self.allde4amount = (snapshot.value! as AnyObject).description
+                self.newallde4amount = Int(self.allde4amount!)! + Int(self.de4amount!)!
+                self.DBRef1.child("table/allorder/allde4amount").setValue(self.newallde4amount)
+                self.DBRef1.child("table/order").child(self.tableNumber!).child("de4amount").setValue(0)
+            })
             let defaultPlace17 = self.DBRef1.child("table/allorder/allsbamount")
             defaultPlace17.observeSingleEvent(of: .value, with: { (snapshot) in
                 self.allsbamount = (snapshot.value! as AnyObject).description
@@ -514,7 +538,7 @@ class SubViewController: UIViewController{
             repeats: false
         )
         Timer.scheduledTimer(
-            timeInterval: 0.5,
+            timeInterval: 0.1,
             target: self,
             selector: #selector(self.status(_:)),
             userInfo: nil,
@@ -593,6 +617,11 @@ class SubViewController: UIViewController{
             self.De3AmountLabel.text = self.de3amount!
             self.De3StepperValue.value = Double(Int(self.de3amount!)!)
         })
+        let defaultPlace33 = DBRef1.child("table/order").child(tableNumber!).child("de4amount")
+        defaultPlace33.observeSingleEvent(of: .value, with: { (snapshot) in self.de4amount = (snapshot.value! as AnyObject).description
+            self.De4AmountLabel.text = self.de4amount!
+            self.De4StepperValue.value = Double(Int(self.de4amount!)!)
+        })
         
         //全食数の取得
         let defaultPlace10 = self.DBRef1.child("table/allorder/allb1amount")
@@ -650,6 +679,10 @@ class SubViewController: UIViewController{
         let defaultPlace19 = self.DBRef1.child("table/allorder/allde3amount")
         defaultPlace19.observe(.value) { (snap: DataSnapshot) in
             self.AllDe3AmountLabel.text = (snap.value! as AnyObject).description
+        }
+        let defaultPlace34 = self.DBRef1.child("table/allorder/allde4amount")
+        defaultPlace34.observe(.value) { (snap: DataSnapshot) in
+            self.AllDe4AmountLabel.text = (snap.value! as AnyObject).description
         }
         let defaultPlace32 = self.DBRef1.child("table/allorder/allsbamount")
         defaultPlace32.observe(.value) { (snap: DataSnapshot) in
